@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>Задание 1</h2>
+      <!-- Вы разрабатываете приложение для отображения и сортировки списка товаров. У вас есть массив объектов products, где каждый объект представляет товар с его названием и ценой. Вам необходимо отобразить список товаров и предоставить пользователю возможность сортировать товары по цене (по возрастанию и по убыванию). -->
+      <ul>
+        <li v-for="item in products" :key="item.id">
+          <label> <input type="checkbox" />{{item.title}}</label>
+          <input v-model.lazy="item.price" type="text" />
+          Цена товара: {{item.price}} рублей
+        </li>
+      </ul>
+      <br />
+      <button @click="SortUp">Сортировать по возрастанию</button>
+
+      <button @click="SortDown">Сортировать по убыванию</button>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const App = {
+        data() {
+          return {
+            products: [
+              { id: 1, title: "Хлеб ", price: 1 },
+              { id: 2, title: "Молоко ", price: 20 },
+              { id: 3, title: "Соль ", price: 12 },
+              { id: 4, title: "Сахар ", price: 53 },
+            ],
+          };
+        },
+        methods: {
+          SortUp() {
+            return this.products.sort((a, b) => a.price - b.price);
+          },
+          SortDown() {
+            return this.products.sort((a, b) => b.price - a.price);
+          },
+        },
+      };
+
+      Vue.createApp(App).mount("#app");
+    </script>
+  </body>
+</html>
